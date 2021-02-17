@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>STJJ-TEST</title>
+
+    </head>	
+
+    <style>
+        body {
+            background-color: #eeeeee
+        }
+        div {
+            background: #ffffff;
+            width: 1000px;
+            text-align: center;
+            border: 1px solid #cccccc;
+            margin: 30px auto;
+        }
+        
+    </style>
+
+    <body>
+        <div>
+            <h1>Wiki版STJJ カードページソースジェネレーター</h1>
+            このページはWiki版STJJのカード登録の際に記述するソースコードを自動生成する機能を提供するWebサービスです。<br>
+            ※注意:改行が必要な場合は&lt;br&gt;を使ってください
+        </div>
+
+        <hr>
+        <form name="form">
+            カード名称:
+            <input type="text" name="card_name"><br>
+            オブジェクト番号(無い場合は0):
+            <input type="text" name="number"><br>
+            カード画像名:
+            <input type="text" name="img_name"><br>
+            カードタイプ:
+            <input type="text" name="main_type"><br>
+            サブタイプ:
+            <input type="text" name="sub_type"><br>
+            確保力:
+            <input type="text" name="attack"><br>
+            コスト:
+            <input type="text" name="cost"><br>
+            オブジェクトクラス:
+            <input type="text" name="oc"><br>
+            効果:
+            <textarea cols=30 rows=5 name="effect"></textarea><br>
+            フレーバーテキスト:
+            <textarea cols=30 rows=5 name="flavor"></textarea><br>
+            タグ:
+            <textarea cols=30 rows=5 name="tags"></textarea><br>
+            出典:
+            <textarea cols=30 rows=5 name="source"></textarea><br>
+        
+            <button type="button" name="create" onclick="func()">作成</button><br>
+            出力:
+            <textarea cols=40 rows=8 name="output"></textarea><br>
+        </form>
+        
+
+
+
+
+
+        <script>
+            function func() {
+                var maintype = document.form.main_type.value;
+                var type = "";
+                var subtype = document.form.sub_type.value;
+                var number = document.form.number.value;
+                var name = document.form.card_name.value;
+                var img = document.form.img_name.value;
+                var oc = document.form.oc.value;
+                var cost = document.form.cost.value;
+                var containment_value = document.form.attack.value;
+                var effect = document.form.effect.value;
+                var flavor = document.form.flavor.value;
+                var tags = document.form.tags.value;
+                var limited = "";
+                var effect_tags = "";
+                var source = document.form.source.value;
+                
+                if(oc != ""){
+                    type = oc;
+                }else{
+                    type = maintype;
+                }
+
+                var str = '{{Cardtable|card_type=' + maintype + '|type='+ type + '|sub_type=' + subtype + '|number=' + number + '|name=' + name +'|image=' + img + '| object_class=' + oc +'|attack=' +containment_value +'|cost= '+ cost +'|effect_text=' +effect +'|flavor_text=' + flavor+'|tags=' + tags +'|limited=' + limited + '|effect_tags=' + effect_tags + '|source=' + source+ '}}';
+                document.form.output.value = str;
+            }
+        </script>
+    </body>
+</html>
