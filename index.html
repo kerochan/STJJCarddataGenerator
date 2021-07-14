@@ -1,3 +1,4 @@
+  
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,7 +24,6 @@
         <div>
             <h1>Wiki版STJJ カードページソースジェネレーター</h1>
             このページはWiki版STJJのカード登録の際に記述するソースコードを自動生成する機能を提供するWebサービスです。<br>
-            ※注意:改行が必要な場合は&lt;br&gt;を使ってください。<br>
             ※注意:サブタイプは【】でくくってください。
         </div>
 
@@ -89,7 +89,8 @@
                 }
 
                 var str = '{{Cardtable|card_type=' + maintype + '|sub_type=' + subtype + '|type='+ type + '|number=' + number + '|name=' + name +'|image=' + img + '| object_class=' + oc +'|attack=' +containment_value +'|cost= '+ cost +'|effect_text=' +effect +'|flavor_text=' + flavor+'|tags=' + tags +'|limited=' + limited + '|effect_tags=' + effect_tags + '|source=' + source+ '}}';
-                str = str.replace('\n', '<br>');
+                //str = repr(str);
+                str = str.replace(/\r?\n/g, '<br>');
                 document.form.output.value = str;
             }
         </script>
